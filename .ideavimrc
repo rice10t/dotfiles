@@ -1,3 +1,8 @@
-set clipboard=unnamed
+source ~/.config/nvim/init.vim
 
-nnoremap / :action Find<CR>
+set clipboard+=ideaput
+
+# plugins
+set surround
+set multiple-cursors
+set commentary
