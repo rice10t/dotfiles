@@ -1,4 +1,7 @@
+# Unix
 source ~/.config/nvim/init.vim
+# Windows
+source ~/AppData/Local/nvim/init.vim
 
 set clipboard+=ideaput
 

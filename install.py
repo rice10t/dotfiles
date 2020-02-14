@@ -1,19 +1,21 @@
 import os
+from pathlib import Path
+import shutil
 
 if os.name == 'nt':
-    print(os.environ['LOCALAPPDATA'])
+    dotfiles = ['.ideavimrc']
+    for file in dotfiles:
+        shutil.copy2(file, str(Path.home()))
 
-    try:
-        nvim_dir = os.path.join(os.environ['LOCALAPPDATA'], 'nvim')
-        if not os.path.exists(nvim_dir):
-            os.mkdir(nvim_dir)
-        os.symlink('init.vim', nvim_dir)
-        print('ok')
-    except PermissionError as e:
-        print('PermissionError: ', e)
-    except OSError as e:
-        print('OSError: ', e)
-        print('シンボリックリンクを作成するためには、 Windows 10 のデベロッパーモードを有効にするか、スクリプトを管理者として実行する必要があります。')
-        # print('You need to enable Developer Mode for Windows or the process must be run as an administrator.')
+    # Neovim
+    nvim_path = Path(os.environ['LOCALAPPDATA'], 'nvim')
+    nvim_path.mkdir(exist_ok=True)
+    shutil.copy2('init.vim', str(nvim_path))
+
 else:
-    pass
+    dotfiles = ['.ideavimrc', '.tmux.conf']
+    for file in dotfiles:
+        print(Path.home())
+        Path.home().symlink_to(file)
+
+    # Neovim
