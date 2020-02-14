@@ -1,2 +1,5 @@
 # Dotfiles
 
+```
+python install.py
+```
