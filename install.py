@@ -15,7 +15,9 @@ if os.name == 'nt':
 else:
     dotfiles = ['.ideavimrc', '.tmux.conf']
     for file in dotfiles:
-        print(Path.home())
-        Path.home().symlink_to(file)
+        shutil.copy2(file, str(Path.home()))
 
     # Neovim
+    nvim_path = Path.home() / '.config' / 'nvim'
+    nvim_path.mkdir(exist_ok=True)
+    shutil.copy2('init.vim', str(nvim_path))
