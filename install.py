@@ -1,27 +1,28 @@
+from typing import List
 import os
 from pathlib import Path
 import shutil
 
-IDEAVIMRC = '.ideavimrc'
-TMUX_CONF = '.tmux.conf'
-INIT_VIM = 'init.vim'
+IDEAVIMRC = Path('.ideavimrc')
+TMUX_CONF = Path('.tmux.conf')
+INIT_VIM = Path('init.vim')
 
 
-def is_windows():
+def is_windows() -> bool:
     return os.name == 'nt'
 
 
-def expands_to_home(files):
+def expands_to_home(files: List[Path]) -> None:
     for file in files:
-        shutil.copy2(file, str(Path.home()))
+        shutil.copy2(str(file), str(Path.home()))
 
 
-def install(src, target):
+def install(src: Path, target: Path) -> None:
     target.mkdir(exist_ok=True)
-    shutil.copy2(src, str(target))
+    shutil.copy2(str(src), str(target))
 
 
-def main():
+def main() -> None:
     if is_windows():
         dotfiles = [IDEAVIMRC]
         expands_to_home(dotfiles)
