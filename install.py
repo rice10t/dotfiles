@@ -18,7 +18,7 @@ def expands_to_home(files: List[Path]) -> None:
 
 
 def install(src: Path, target: Path) -> None:
-    target.mkdir(exist_ok=True)
+    target.mkdir(parents=True, exist_ok=True)
     shutil.copy2(str(src), str(target))
 
 
