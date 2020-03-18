@@ -6,6 +6,7 @@ import shutil
 IDEAVIMRC = Path('.ideavimrc')
 TMUX_CONF = Path('.tmux.conf')
 INIT_VIM = Path('init.vim')
+PROFILE_PS1 = Path('profile.ps1')
 
 
 def is_windows() -> bool:
@@ -37,6 +38,10 @@ def main() -> None:
     else:
         nvim_path = Path.home() / '.config' / 'nvim'
         install(INIT_VIM, nvim_path)
+
+    # Windows specific
+    if is_windows():
+        install(PROFILE_PS1, Path.home() / 'Documents' / 'WindowsPowerShell')
 
 
 main()
