@@ -9,3 +9,4 @@ set clipboard+=ideaput
 set surround
 set multiple-cursors
 set commentary
+set matchit
