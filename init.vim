@@ -9,3 +9,6 @@ set emoji
 
 nnoremap j gj
 nnoremap k gk
+
+vnoremap p "_p
+vnoremap P "_P
